@@ -16,12 +16,10 @@ import { Card } from "@/components/ui/card";
 import "@styles/globals.css";
 
 const allArtists = await getCollection("artist");
+const allReleases = await getCollection("release");
 
-const lastReleases = (await getCollection("release"))
-  .sort(sortByReleaseDate)
-  .splice(0, 3);
-
-const latestJoinedArtists = [...allArtists.sort(sortByJoinDate)].splice(0, 2);
+const lastReleases = [...allReleases].sort(sortByReleaseDate).splice(0, 3);
+const latestJoinedArtists = [...allArtists].sort(sortByJoinDate).splice(0, 2);
 
 const newestRelease = lastReleases[0];
 const newestReleaseArtists = await getEntries(newestRelease.data.artists);
