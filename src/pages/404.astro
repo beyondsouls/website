@@ -1,0 +1,44 @@
+---
+import { getCollection } from "astro:content";
+
+import "@styles/globals.css";
+
+import Layout from "@/layouts/Layout.astro";
+import ReleaseCard from "@/components/ReleaseCard.astro";
+import { Container } from "@/components/ui/container";
+import Metadata from "@/components/Metadata.astro";
+import { sortByReleaseDate } from "@utils/sort";
+
+import heroImage from "@/images/hero/draft-2023-v3.jpeg";
+import { ButtonLink } from "@/components/ui/button";
+
+const lastReleases = (await getCollection("release"))
+  .sort(sortByReleaseDate)
+  .splice(0, 3);
+
+const newestRelease = lastReleases[0];
+
+const artists = await getCollection("artist");
+---
+
+<Layout>
+  <Metadata
+    slot="head"
+    title="Not Found"
+    description="The page you've been looking for does not exist."
+    type="website"
+    image=""
+  />
+  <Container
+    className="flex-col items-center justify-center h-96 gap-4 px-8 text-center"
+  >
+    <h1 class="text-4xl sm:text-7xl font-bold">Not Found</h1>
+    <p class="sm:text-lg">The page you've been looking for does not exist.</p>
+    <div class="flex flex-row md:flex-nowrap gap-4">
+      <ButtonLink href="/">Home</ButtonLink>
+      <ButtonLink variant="secondary" href="/releases">
+        View Releases
+      </ButtonLink>
+    </div>
+  </Container>
+</Layout>

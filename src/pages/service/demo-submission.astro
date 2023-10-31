@@ -1,0 +1,60 @@
+---
+import "@styles/globals.css";
+
+import Layout from "@/layouts/Layout.astro";
+import Metadata from "@/components/Metadata.astro";
+import { Container } from "@/components/ui/Container";
+import { SafeMailtoAction } from "@/components/bound/safe-mailto-action";
+---
+
+<Layout>
+  <Metadata
+    title="Submit a Demo"
+    description="Want to get your music signed on Beyond Souls? Find all information on how to submit your demo here!"
+    type="website"
+    slot="head"
+  />
+  <Container className="flex flex-col gap-12">
+    <section class="grid grid-cols-1 gap-8 md:gap-12 md:grid-cols-2">
+      <article>
+        <h2 class="font-bold text-3xl mb-4">Before submitting your demo</h2>
+        <p>
+          We are very excited that you are interested in releasing music on our
+          imprint. However to ensure a smooth process to our A&R and fast
+          feedback as well as signing-cycles you need to respect a few things.
+        </p>
+      </article>
+      <article>
+        <h2 class="font-bold text-3xl mb-4">Rules</h2>
+        <ul class="flex flex-col list-disc ml-4 max-w-sm gap-2">
+          <li>Only submit tracks created by your own</li>
+          <li>
+            You have to offer your demo exclusively to Beyond Souls Records, not
+            to other labels in parallel
+          </li>
+          <li>We only listen to private Soundcloud links</li>
+        </ul>
+      </article>
+      <article>
+        <p class="mb-2">
+          You may assume that once you’ve submitted the form, we have received
+          your demo in good order and that our team will have a listen to your
+          track. It’s useless to submit your track more than once, this will
+          have the opposite effect.
+        </p>
+        <p class="font-semibold">
+          We will contact you if we are interested in your production. If we
+          haven’t contact you in 30 days, you are free to send your track to
+          other labels.
+        </p>
+      </article>
+      <article>
+        <SafeMailtoAction
+          client:load
+          encodedUrl="bWFpbHRvOmRlbW9AYmV5b25kLXNvdWxzLmNvbT9zdWJqZWN0PSU1QkRlbW8lNUQlMjBBcnRpc3QlMjAtJTIwVGl0bGUmYm9keT1QbGVhc2UlMjBpbnRyb2R1Y2UlMjB5b3Vyc2VsZiUyMGFuZCUyMGRlY2xhcmUlMjB3aHklMjB0aGlzJTIwZGVtbyUyMGZpdHMlMjBvdXIlMjBsYWJlbC4="
+          label="Submit your Demo"
+        />
+      </article>
+    </section>
+  </Container>
+</Layout>

@@ -1,0 +1,117 @@
+---
+import { ExternalLink } from "lucide-react";
+
+import imprintLogoImage from "@/images/corporate/imprint.svg?raw";
+import { Container } from "@/components/ui/container";
+---
+
+<Container tag="footer" className="mt-12 mb-4 flex-col">
+  <section
+    class="flex flex-nowrap border px-12 rounded-tl-lg rounded-tr-lg justify-between flex-col md:flex-row py-12 md:py-18 gap-4 md:gap-8"
+  >
+    <div class="w-full flex justify-center align-center sm:w-auto">
+      <figure class="h-40">
+        <Fragment set:html={imprintLogoImage} />
+      </figure>
+    </div>
+    <div class="text-center sm:text-left">
+      <h3 class="font-bold text-lg mb-4">Pages</h3>
+      <nav>
+        <ul class="w-full flex flex-col gap-2">
+          <li>
+            <a aria-label="Releases" href="/releases">Releases</a>
+          </li>
+          <li>
+            <a aria-label="Artists" href="/artists">Artists</a>
+          </li>
+          <li>
+            <a aria-label="Impressum" href="/legal/impressum">Impressum</a>
+          </li>
+          <li>
+            <a aria-label="Privacy" href="/legal/privacy">Privacy</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="text-center sm:text-left">
+      <h3 class="font-bold text-lg mb-4">Socials</h3>
+      <nav>
+        <ul class="w-full flex flex-col gap-2">
+          <li>
+            <a
+              class="inline-flex justify-start items-center"
+              href="https://www.instagram.com/beyondsoulsrecords"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              data-umami-event="Leap - Instagram"
+            >
+              Instagram
+              <ExternalLink className="w-3 h-3 ml-1" />
+            </a>
+          </li>
+          <li>
+            <a
+              class="inline-flex justify-start items-center"
+              href="https://www.facebook.com/beyondsoulsrecords/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              data-umami-event="Leap - Facebook"
+            >
+              Facebook
+              <ExternalLink className="w-3 h-3 ml-1" />
+            </a>
+          </li>
+          <li>
+            <a
+              class="inline-flex justify-start items-center"
+              href="https://www.beatport.com/label/beyond-souls/66006"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Beatport"
+              data-umami-event="Leap - Beatport"
+            >
+              Beatport
+              <ExternalLink className="w-3 h-3 ml-1" />
+            </a>
+          </li>
+          <li>
+            <a
+              class="inline-flex justify-start items-center"
+              href="https://soundcloud.com/beyondsoulsrecords"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Soundcloud"
+              data-umami-event="Leap - Soundcloud"
+            >
+              SoundCloud
+              <ExternalLink className="w-3 h-3 ml-1" />
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="text-center sm:text-left">
+      <h3 class="font-bold text-lg mb-4">Demo Submission</h3>
+      <p class="max-w-xs">
+        You can submit your unsigned productions via the <a
+          title="Submit your demo"
+          aria-label="Demo Submission"
+          href="/service/demo-submission"
+          data-umami-event="Footer Demo Submission">Demo Submission</a
+        > page.
+      </p>
+      <p class="max-w-xs text-sm text-foreground/50 mt-4">
+        Please check the criterias that you have to take into account before
+        submitting your demo!
+      </p>
+    </div>
+  </section>
+  <section
+    class="flex flex-col flex-nowrap items-center justify-center py-8 border-r border-l border-b rounded-br-lg rounded-bl-lg"
+  >
+    <p class="text-sm font-bold">Copyright &copy; Beyond Souls Records KLG</p>
+    <p class="text-xs">VAT ID: CH-320.2.082.228-8</p>
+  </section>
+</Container>

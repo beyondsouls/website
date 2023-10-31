@@ -1,0 +1,112 @@
+---
+import * as ReactIcons from "react-icons/si";
+
+import { ButtonLink } from "@/components/ui/button";
+import type { CollectionEntry } from "astro:content";
+
+type Props = CollectionEntry<"release">["data"]["purchase"];
+
+const { apple, beatport, soundcloud, spotify, tidal, amazon, youtube } =
+  Astro.props || {};
+---
+
+<div class="flex flex-row flex-nowrap gap-2">
+  {
+    spotify && (
+      <ButtonLink
+        variant="outline"
+        className="flex-grow sm:flex-grow-0 px-2 transition-colors border-2 border-spotify-brand text-spotify-brand"
+        href={spotify}
+        rel="noopener noreferrer"
+        target="_blank"
+        title="Stream on Spotify"
+      >
+        <ReactIcons.SiSpotify className="w-5 h-5" />
+      </ButtonLink>
+    )
+  }
+  {
+    apple && (
+      <ButtonLink
+        variant="outline"
+        className="flex-grow sm:flex-grow-0 px-2 transition-colors border-2 border-appleMusic-brand text-appleMusic-brand"
+        href={apple}
+        rel="noopener noreferrer"
+        target="_blank"
+        title="Stream or buy on Apple Music"
+      >
+        <ReactIcons.SiApplemusic className="w-5 h-5" />
+      </ButtonLink>
+    )
+  }
+  {
+    soundcloud && (
+      <ButtonLink
+        variant="outline"
+        className="flex-grow sm:flex-grow-0 px-2 transition-colors border-2 border-soundcloud-brand text-soundcloud-brand"
+        href={soundcloud}
+        rel="noopener noreferrer"
+        target="_blank"
+        title="Stream preview on SoundCloud"
+      >
+        <ReactIcons.SiSoundcloud className="w-5 h-5" />
+      </ButtonLink>
+    )
+  }
+  {
+    tidal && (
+      <ButtonLink
+        variant="outline"
+        className="flex-grow sm:flex-grow-0 px-2 transition-colors border-2 border-tidal-brand text-tidal-brand"
+        href={tidal}
+        rel="noopener noreferrer"
+        target="_blank"
+        title="Stream on Tidal"
+      >
+        <ReactIcons.SiTidal className="w-5 h-5" />
+      </ButtonLink>
+    )
+  }
+  {
+    beatport && (
+      <ButtonLink
+        variant="outline"
+        className="flex-grow sm:flex-grow-0 px-2 transition-colors border-2 border-beatport-brand text-beatport-brand"
+        href={beatport}
+        rel="noopener noreferrer"
+        target="_blank"
+        title="Buy on Beatport"
+      >
+        <ReactIcons.SiBeatport className="w-5 h-5" />
+      </ButtonLink>
+    )
+  }
+  {
+    amazon && (
+      <ButtonLink
+        variant="outline"
+        className="flex-grow sm:flex-grow-0 px-2 transition-colors border-2 border-amazon-brand text-amazon-brand"
+        href={amazon}
+        rel="noopener noreferrer"
+        target="_blank"
+        title="Buy or stream on Amazon Music"
+      >
+        <ReactIcons.SiAmazon className="w-5 h-5" />
+      </ButtonLink>
+    )
+  }
+  {
+    youtube && (
+      <ButtonLink
+        variant="outline"
+        className="flex-grow sm:flex-grow-0 px-2 transition-colors border-2 border-youtube-brand text-youtube-brand"
+        href={youtube}
+        rel="noopener noreferrer"
+        target="_blank"
+        title="Watch on YouTube"
+      >
+        <ReactIcons.SiYoutube className="w-5 h-5" />
+      </ButtonLink>
+    )
+  }
+</div>

@@ -1,0 +1,55 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { ArrowRight, Disc3, MapPin, Image as ImageIcon } from "lucide-react";
+import { Image } from "astro:assets";
+import { Badge } from "./ui/badge";
+import { ButtonLink } from "./ui/button";
+import ImagePlaceholder from "./ImagePlaceholder.astro";
+
+export type Props = CollectionEntry<"artist"> & {
+  releaseCount?: number;
+};
+
+const { data, slug, releaseCount } = Astro.props;
+const { country, city, name, image } = data;
+---
+
+<article class="flex flex-col md:flex-row">
+  <div class="basis-40">
+    <figure class="aspect-square">
+      {
+        image && (
+          <Image
+            class="rounded-md object-cover h-full border"
+            src={image}
+            alt={name}
+            width="1000"
+            height="1000"
+          />
+        )
+      }
+      {!image && <ImagePlaceholder />}
+    </figure>
+  </div>
+  <div class="flex flex-col gap-2 mt-2 md:gap-4 md:p-4 md:mt-0">
+    <h2 class="text-3xl font-bold">{name}</h2>
+    <div class="flex flex-row flex-wrap gap-2">
+      <Badge variant="outline">
+        <MapPin className="w-3 h-3 mr-1" />
+        {city ? `${city}, ${country}` : country}
+      </Badge>
+      {
+        releaseCount && (
+          <Badge variant="outline">
+            <Disc3 className="w-3 h-3 mr-1" />
+            {releaseCount}&nbsp;{releaseCount === 1 ? "Release" : "Releases"}
+          </Badge>
+        )
+      }
+    </div>
+    <ButtonLink href={`/artists/${slug}`} aria-label={`View artist ${name}`}>
+      View Artist & Releases
+      <ArrowRight className="h-4 w-4 ml-2" />
+    </ButtonLink>
+  </div>
+</article>

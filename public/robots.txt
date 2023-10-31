@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /legal/impressum
+Disallow: /legal/privacy
+
+Sitemap: https://beyond-souls.com/sitemap-index.xml

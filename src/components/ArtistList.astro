@@ -1,0 +1,24 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  artists: CollectionEntry<"artist">[];
+}
+
+const { artists } = Astro.props;
+---
+
+{
+  artists.map((artist, i) => (
+    <>
+      <a
+        class="border-b border-dotted"
+        href={`/artists/${artist.slug}`}
+        aria-label={artist.data.name}
+      >
+        {artist.data.name}
+      </a>
+      {i < artists.length - 1 && <>,&nbsp;</>}
+    </>
+  ))
+}

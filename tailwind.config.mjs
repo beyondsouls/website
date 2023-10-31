@@ -1,12 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: ["class"],
-  content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-	],
+  darkMode: ["class", '[data-mode="dark"]'],
+  classAttributes: ["class", "class:list", "className"],
+  content: ["./src/**/*.{js,ts,tsx,astro,html,svg}"],
   theme: {
     container: {
       center: true,
@@ -16,6 +12,25 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        sans: [
+          "Montserrat",
+          "ui-sans-serif",
+          "system-ui",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "Segoe UI",
+          "Roboto",
+          "Helvetica Neue",
+          "Arial",
+          "Noto Sans",
+          "sans-serif",
+          "Apple Color Emoji",
+          "Segoe UI Emoji",
+          "Segoe UI Symbol",
+          "Noto Color Emoji",
+        ],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -50,6 +65,34 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        tidal: {
+          brand: "#FFF215",
+          foreground: "hsl(var(--foreground))",
+        },
+        soundcloud: {
+          brand: "#ff8800",
+          foreground: "hsl(var(--foreground))",
+        },
+        appleMusic: {
+          brand: "#fc3c44",
+          foreground: "hsl(var(--foreground))",
+        },
+        spotify: {
+          brand: "#1db954",
+          foreground: "hsl(var(--foreground))",
+        },
+        beatport: {
+          brand: "#01FF95",
+          foreground: "hsl(var(--background))",
+        },
+        amazon: {
+          brand: "#0dbff5",
+          foreground: "hsl(var(--foreground))",
+        },
+        youtube: {
+          brand: "#FF0000",
+          foreground: "hsl(var(--foreground))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -70,7 +113,10 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      height: {
+        128: "32rem",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
-}
+};

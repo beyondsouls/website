@@ -1,0 +1,48 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import ArtistList from "./ArtistList.astro";
+import { ExternalLink } from "lucide-react";
+import clsx from "clsx";
+import { dynamicViteReleaseCoverAssetImport } from "@utils/import";
+
+interface Props {
+  className?: string;
+  release: CollectionEntry<"release">;
+  artists: CollectionEntry<"artist">[];
+}
+
+const { release, artists, className } = Astro.props;
+---
+
+<article
+  class={clsx(
+    "w-full flex flex-row flex-nowrap items-center gap-4 bg-foreground/5 border rounded-md p-4",
+    className,
+  )}
+>
+  <figure class="aspect-square w-10 sm:w-20">
+    <Image
+      class="rounded-sm md:rounded-md object-cover border"
+      src={release.data.cover}
+      alt={release.data.title}
+      loading="lazy"
+      decoding="async"
+      quality="low"
+      widths={[100, 300]}
+    />
+  </figure>
+  <div class="flex-grow">
+    <h4 class="md:text-xl font-semibold">{release.data.title}</h4>
+    <p class="text-sm md:text-base whitespace-break-spaces">
+      <ArtistList artists={artists} />
+    </p>
+  </div>
+  <a
+    class="transition-colors flex-grow-0 px-2 text-foreground/50 hover:text-white h-full flex justify-center items-center"
+    href={release.slug}
+    aria-label={release.data.title}
+  >
+    <ExternalLink className="w-4 h-4 md:w-6 md:h-6" />
+  </a>
+</article>

@@ -1,0 +1,48 @@
+---
+import type { CollectionEntry } from "astro:content";
+import {
+  Table,
+  TableBody,
+  TableHead,
+  TableHeader,
+  TableRow,
+  TableCell,
+} from "@/components/ui/table";
+
+interface Props {
+  tracks: CollectionEntry<"track">[];
+}
+
+const { tracks } = Astro.props;
+---
+
+<div class="relative w-full overflow-x-scroll">
+  <Table>
+    <TableHeader className="font-semibold text-muted-foreground">
+      <TableRow>
+        <TableCell>#</TableCell>
+        <TableCell>Title</TableCell>
+        <TableCell>Version</TableCell>
+        <TableCell className="hidden sm:table-cell">Tempo</TableCell>
+        <TableCell className="hidden sm:table-cell">Genre</TableCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      {
+        tracks.map((track, i) => (
+          <TableRow>
+            <TableCell className="text-xs">{i + 1}</TableCell>
+            <TableCell>{track.data.title}</TableCell>
+            <TableCell>{track.data.version}</TableCell>
+            <TableCell className="hidden sm:table-cell text-xs">
+              {track.data.tempo}BPM
+            </TableCell>
+            <TableCell className="hidden sm:table-cell">
+              {track.data.genre}
+            </TableCell>
+          </TableRow>
+        ))
+      }
+    </TableBody>
+  </Table>
+</div>

@@ -1,0 +1,53 @@
+---
+import "@styles/globals.css";
+
+import Layout from "@/layouts/Layout.astro";
+import Metadata from "@/components/Metadata.astro";
+import { Container } from "@/components/ui/container";
+---
+
+<Layout>
+  <Metadata
+    title="Privacy"
+    description="Privacy statement"
+    type="website"
+    slot="head"
+  />
+  <Container className="flex-col gap-4">
+    <h1 class="text-6xl font-bold mb-8">Privacy</h1>
+    <article class="max-w-xl flex flex-col gap-4">
+      <h2 class="text-xl font-bold">Third party services</h2>
+      <p>
+        This application does <strong>not</strong> use any third party services.
+      </p>
+      <h2 class="text-xl font-bold">Data Collection</h2>
+      <p>
+        We do not collect any sensitive personal data, nor transfer any kind of
+        data to third parties. We use <a href="https://umami.is/">Umami</a> to
+        store anonymous data to improve our services. The data is stored within
+        US territory. We track the followng information from your access:
+      </p>
+      <ul class="list-disc ml-4">
+        <li>Browser information such as user agent or your OS</li>
+        <li>Approximate (IPS) location</li>
+        <li>Journey through our pages</li>
+        <li>
+          Arbitrary user identifier stored in the session storage of your
+          browser
+        </li>
+        <li>Theme setting (dark, ligh or system mode)</li>
+      </ul>
+      <h2 class="text-xl font-bold">GDPR Compliance</h2>
+      <p>
+        We do not collect any personally identifiable information and anonymizes
+        all data collected. Users cannot be identified and are never tracked
+        across websites.
+      </p>
+      <h2 class="text-xl font-bold">Questions</h2>
+      <p>
+        Please head over to the <a href="/legal/impressum">Impressum</a> for
+        more information.
+      </p>
+    </article>
+  </Container>
+</Layout>

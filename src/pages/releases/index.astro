@@ -1,0 +1,44 @@
+---
+import { getCollection } from "astro:content";
+
+import { Container } from "@/components/ui/container";
+
+import "@styles/globals.css";
+
+import Layout from "@/layouts/Layout.astro";
+import ReleaseCard from "@/components/ReleaseCard.astro";
+import Metadata from "@/components/Metadata.astro";
+import { sortByReleaseDate } from "@utils/sort";
+
+const releases = (await getCollection("release")).sort(sortByReleaseDate);
+const artists = await getCollection("artist");
+---
+
+<Layout>
+  <Metadata
+    slot="head"
+    title="Releases"
+    description="Enter a new dimension of electronic music."
+    type="website"
+    image=""
+  />
+
+  <Container className="items-center">
+    <section class="w-full grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
+      {
+        releases.map((release) => (
+          <ReleaseCard
+            release={release}
+            artists={
+              artists.filter((artist) =>
+                release.data.artists.find(
+                  (releaseArtist) => releaseArtist.slug === artist.slug,
+                ),
+              )!
+            }
+          />
+        ))
+      }
+    </section>
+  </Container>
+</Layout>

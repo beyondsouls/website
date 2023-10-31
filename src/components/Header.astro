@@ -1,0 +1,99 @@
+---
+import clsx from "clsx";
+import iconLogoImage from "@/images/corporate/icon.svg?raw";
+import { Container } from "@/components/ui/container";
+import { ThemeSwitcher } from "@/components/ui/theme-switcher";
+import { MobileToggle } from "@/components/bound/mobile-toggle";
+import { Navigation } from "@/components/bound/navigation";
+import { isNavigationOpen } from "@/stores/navigation";
+import { Button } from "./ui/button";
+import { Menu } from "lucide-react";
+
+interface Props {
+  useCustomHeroSection?: boolean;
+}
+
+const { pathname } = new URL(Astro.request.url);
+
+const isInReleases = pathname.startsWith("/releases");
+const isInArtists = pathname.startsWith("/artists");
+
+const { useCustomHeroSection } = Astro.props;
+---
+
+<header class="fixed top-4 left-0 right-0 z-50">
+  <Container>
+    <div
+      class="w-full flex flex-row flex-nowrap justify-between items-center p-4 rounded-xl shadow-lg border backdrop-blur-xl bg-background/50"
+    >
+      <a href="/" class="h-20 py-2">
+        <Fragment set:html={iconLogoImage} />
+      </a>
+      <MobileToggle client:load />
+      <Navigation
+        client:load
+        items={[
+          {
+            isActive: isInReleases,
+            href: "/releases",
+            label: "Releases",
+          },
+          {
+            isActive: isInArtists,
+            href: "/artists",
+            label: "Artists",
+          },
+        ]}
+      >
+        <li>
+          <ThemeSwitcher client:load />
+        </li>
+      </Navigation>
+      <!-- <nav
+        class={clsx(
+          // general
+          "h-20 text-lg font-bold",
+          // mobile nav
+          "z-50 fixed -left-4 -right-4 -top-4 -bottom-4 h-screen w-screen bg-background/90 filter backdrop-blur-lg items-center",
+          // desktop nav
+          "md:z-0",
+          {
+            "max-md:hidden": !isNavigationOpen.get(),
+          },
+        )}
+        role="navigation"
+      >
+        <ul
+          class={clsx(
+            // general styles
+            "flex items-center justify-center h-full",
+            // mobile
+            "p-4 gap-8 flex-col",
+            // desktop styles
+            "md:gap-6 md:flex-row md:flex-nowrap md:h-full md:p-0",
+          )}
+        >
+          <li>
+            <a
+              class={clsx("transition-colors py-4 px-6 rounded-lg", {
+                "bg-foreground text-background cursor-default": isInReleases,
+                "hover:bg-muted": !isInReleases,
+              })}
+              href="/releases">Releases</a
+            >
+          </li>
+          <li>
+            <a
+              class={clsx("transition-colors py-4 px-6 rounded-lg", {
+                "bg-foreground text-background cursor-default": isInArtists,
+                "hover:bg-muted": !isInArtists,
+              })}
+              href="/artists">Artists</a
+            >
+          </li>
+          
+        </ul>
+      </nav> -->
+    </div>
+  </Container>
+</header>

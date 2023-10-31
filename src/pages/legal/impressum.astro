@@ -1,0 +1,35 @@
+---
+import "@styles/globals.css";
+
+import Layout from "@/layouts/Layout.astro";
+import Metadata from "@/components/Metadata.astro";
+import { Container } from "@/components/ui/container";
+import { SafeMailtoAction } from "@/components/bound/safe-mailto-action";
+---
+
+<Layout>
+  <Metadata
+    title="Impressum"
+    description="Find our Impressum here"
+    type="website"
+    slot="head"
+  />
+  <Container className="flex-col gap-4">
+    <h1 class="text-6xl font-bold mb-8">Impressum</h1>
+    <article>
+      <h2 class="text-xl font-bold">Beyond Souls Records KLG</h2>
+      <p class="my-4">Domicile is St.Gallen, Switzerland</p>
+      <address class="not-italic my-4">
+        Jan Biasi <br />
+         Beyond Souls Records KLG <br />
+         Eichholzstrasse 30b <br />
+         9436 Balgach
+      </address>
+      <SafeMailtoAction
+        client:load
+        encodedUrl="bWFpbHRvOmJ1c2luZXNzQGJleW9uZC1zb3Vscy5jb20/c3ViamVjdD1SZXF1ZXN0JTIwLSUyMC4uLiZib2R5PVBsZWFzZSUyMGxlYXZlJTIwYSUyMGRldGFpbGVkJTIwbWVzc2FnZSUyMGhlcmU="
+        label="Contact Us"
+      />
+    </article>
+  </Container>
+</Layout>

@@ -1,0 +1,9 @@
+---
+interface Props {
+  ogImage: string;
+}
+
+const { ogImage } = Astro.props;
+---
+
+<meta name="og:image" content={ogImage} />
