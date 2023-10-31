@@ -11,6 +11,8 @@ export const ThemeSwitcher: FC = () => {
 
     if (initialValue) {
       setTheme(initialValue);
+    } else {
+      setTheme("dark");
     }
   }, []);
 
