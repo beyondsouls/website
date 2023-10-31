@@ -7,16 +7,12 @@ import { resolve } from "node:path";
 
 interface Props {
   params: { slug: string };
-  props: { post: CollectionEntry<"release"> };
+  props: { entry: CollectionEntry<"artist"> };
 }
 
-const ROOT_URL = new URL("../../../", import.meta.url).toString();
-
 export async function GET({ props }: Props) {
-  const { post } = props;
-
-  const artists = await getEntries(post.data.artists);
-  const artistNames = formatArtistNames(artists);
+  const { entry } = props;
+  const { name } = entry.data;
 
   // const releaseImage = getOgImageFile(post.data.cover.src);
   // const fsImagePath = post.data.cover.src.replace("/@fs", "").split("?")[0];
@@ -74,19 +70,10 @@ export async function GET({ props }: Props) {
                 tw: "font-bold",
                 props: {
                   style: {
-                    fontSize: "100px",
+                    fontSize: "120px",
                     fontWeight: "800",
                   },
-                  children: post.data.title,
-                },
-              },
-              {
-                type: "div",
-                props: {
-                  style: {
-                    fontSize: "40px",
-                  },
-                  children: `by ${artistNames}`,
+                  children: name,
                 },
               },
             ],
@@ -150,9 +137,9 @@ export async function GET({ props }: Props) {
 
 // to generate an image for each blog posts in a collection
 export async function getStaticPaths() {
-  const blogPosts = await getCollection("release");
-  return blogPosts.map((post) => ({
-    params: { slug: post.slug },
-    props: { post },
+  const entries = await getCollection("artist");
+  return entries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
   }));
 }
