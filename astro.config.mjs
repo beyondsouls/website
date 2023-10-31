@@ -4,6 +4,8 @@ import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 
+// import compress from "astro-compress";
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://beyond-souls.com",
@@ -21,6 +23,7 @@ export default defineConfig({
     tailwind({
       applyBaseStyles: false,
     }),
+    // import.meta.env.MODE === "production" ? compress() : null,
   ],
   vite: {
     ssr: {
