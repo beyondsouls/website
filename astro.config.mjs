@@ -10,6 +10,7 @@ import tailwind from "@astrojs/tailwind";
 export default defineConfig({
   site: "https://beyond-souls.com",
   output: "static",
+  trailingSlash: "never",
   build: {
     format: "file",
   },
