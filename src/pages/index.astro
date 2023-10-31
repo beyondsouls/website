@@ -15,17 +15,16 @@ import { Card } from "@/components/ui/card";
 
 import "@styles/globals.css";
 
+const allArtists = await getCollection("artist");
+
 const lastReleases = (await getCollection("release"))
   .sort(sortByReleaseDate)
   .splice(0, 3);
 
-const lastArtists = (await getCollection("artist"))
-  .sort(sortByJoinDate)
-  .splice(0, 2);
+const latestJoinedArtists = [...allArtists.sort(sortByJoinDate)].splice(0, 2);
 
 const newestRelease = lastReleases[0];
-
-const artists = await getEntries(newestRelease.data.artists);
+const newestReleaseArtists = await getEntries(newestRelease.data.artists);
 ---
 
 <Layout useCustomHeroSection>
@@ -59,7 +58,9 @@ const artists = await getEntries(newestRelease.data.artists);
         />
         <div>
           <h2 class="text-6xl font-bold">{newestRelease.data.title}</h2>
-          <p class="text-lg">by <ArtistList artists={artists} /></p>
+          <p class="text-lg">
+            by <ArtistList artists={newestReleaseArtists} />
+          </p>
           <ButtonLink
             className="mt-4 w-full md:w-auto"
             href={`/releases/${newestRelease.slug}`}
@@ -81,10 +82,11 @@ const artists = await getEntries(newestRelease.data.artists);
           <ReleaseCard
             release={release}
             artists={
-              artists.filter((artist) =>
-                release.data.artists.find(
-                  (releaseArtist) => releaseArtist.slug === artist.slug,
-                ),
+              allArtists.filter(
+                (artist) =>
+                  !!release.data.artists.find(
+                    (releaseArtist) => releaseArtist.slug === artist.slug,
+                  ),
               )!
             }
           />
@@ -98,7 +100,7 @@ const artists = await getEntries(newestRelease.data.artists);
     </h2>
     <section class="w-full grid sm:grid-cols-2 gap-4 sm:gap-8">
       {
-        lastArtists.map((artist) => (
+        latestJoinedArtists.map((artist) => (
           <Card>
             <div class="p-4">
               <ArtistTeaser {...artist} />
