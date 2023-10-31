@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import {
   getCollection,
   getEntries,
@@ -6,12 +7,12 @@ import {
   getEntry,
 } from "astro:content";
 
+import { format } from "date-fns";
+import clsx from "clsx";
+
 import Layout from "@/layouts/Layout.astro";
 import { formatArtistNames, formatReleaseType } from "@/utils/format";
-
-import "@styles/globals.css";
 import { Container } from "@/components/ui/container";
-import { Image } from "astro:assets";
 import Tracklist from "@/components/Tracklist.astro";
 import ArtistList from "@/components/ArtistList.astro";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
@@ -19,11 +20,9 @@ import { Disc3, Dna, ExternalLink, Fingerprint, Library } from "lucide-react";
 import ShopList from "@/components/ShopList.astro";
 import { Badge } from "@/components/ui/badge";
 import Metadata from "@/components/Metadata.astro";
-import { format } from "date-fns";
-import { resolveReleasesByArtist } from "@utils/resolvers";
 import ReleaseTeaser from "@/components/ReleaseTeaser.astro";
-import clsx from "clsx";
-import { dynamicViteReleaseCoverAssetImport } from "@utils/import";
+
+import "@styles/globals.css";
 
 type Props = CollectionEntry<"release">;
 
@@ -55,16 +54,9 @@ const designer = await getEntry(data.coverDesignBy);
 const mastering = await getEntry(data.masteringBy);
 
 const allArtists = await getCollection("artist");
-const allReleases = await getCollection("release");
 
 const recommendedReleases = recommended ? await getEntries(recommended) : [];
 const artistNames = formatArtistNames(artists);
-
-// workaround - see https://github.com/withastro/astro/issues/3373
-// const images = import.meta.glob<ImageMetadata>("../../../images/releases/*", {
-// import: "default",
-// });
-// const img = await images[`../../../images/releases/${catalogNo}.jpg`]();
 ---
 
 <Layout>

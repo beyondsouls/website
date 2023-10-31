@@ -3,8 +3,6 @@ import { getCollection, getEntries } from "astro:content";
 import { Image } from "astro:assets";
 import { ArrowRight } from "lucide-react";
 
-import "@styles/globals.css";
-
 import Layout from "@/layouts/Layout.astro";
 import ReleaseCard from "@/components/ReleaseCard.astro";
 import { Container } from "@/components/ui/container";
@@ -13,7 +11,9 @@ import ArtistList from "@/components/ArtistList.astro";
 import ArtistTeaser from "@/components/ArtistTeaser.astro";
 import { ButtonLink } from "@/components/ui/button";
 import { sortByReleaseDate, sortByJoinDate } from "@utils/sort";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
+
+import "@styles/globals.css";
 
 const lastReleases = (await getCollection("release"))
   .sort(sortByReleaseDate)

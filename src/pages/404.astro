@@ -1,24 +1,10 @@
 ---
-import { getCollection } from "astro:content";
-
-import "@styles/globals.css";
-
 import Layout from "@/layouts/Layout.astro";
-import ReleaseCard from "@/components/ReleaseCard.astro";
 import { Container } from "@/components/ui/container";
 import Metadata from "@/components/Metadata.astro";
-import { sortByReleaseDate } from "@utils/sort";
-
-import heroImage from "@/images/hero/draft-2023-v3.jpeg";
 import { ButtonLink } from "@/components/ui/button";
 
-const lastReleases = (await getCollection("release"))
-  .sort(sortByReleaseDate)
-  .splice(0, 3);
-
-const newestRelease = lastReleases[0];
-
-const artists = await getCollection("artist");
+import "@styles/globals.css";
 ---
 
 <Layout>

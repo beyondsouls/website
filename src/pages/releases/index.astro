@@ -2,13 +2,12 @@
 import { getCollection } from "astro:content";
 
 import { Container } from "@/components/ui/container";
-
-import "@styles/globals.css";
-
 import Layout from "@/layouts/Layout.astro";
 import ReleaseCard from "@/components/ReleaseCard.astro";
 import Metadata from "@/components/Metadata.astro";
 import { sortByReleaseDate } from "@utils/sort";
+
+import "@styles/globals.css";
 
 const releases = (await getCollection("release")).sort(sortByReleaseDate);
 const artists = await getCollection("artist");
